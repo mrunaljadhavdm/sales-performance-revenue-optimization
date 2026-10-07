@@ -12,19 +12,19 @@ This project analyzes **2,000 sales orders**, with one row representing one orde
 
 The data contains information about order dates, regions, sales channels, customer types, product categories, products, salespeople, quantity, unit price, discounts and revenue.
 
-The main goal was to identify **revenue patterns, high-performing segments, product concentration and opportunities for improving sales performance**.
+The main goal was to identify **observed revenue patterns, high-performing segments, product concentration and areas for further business investigation**.
 
 The project follows one complete workflow:
 
-**Excel → Statistics → SQL**
+**Excel → Statistics → MySQL**
 
-Excel is used for reporting and visualization, while SQL is used for deeper analysis and business questions that go beyond the dashboard.
+Excel is used for reporting, visualization and statistical analysis, while SQL is used for deeper analysis beyond the main dashboard.
 
 ---
 
 ## 2. Business Problem
 
-A business needs a simple way to understand where revenue is coming from and which areas deserve further attention.
+A business needs a clear way to understand where revenue is coming from and which areas deserve further attention.
 
 This project focuses on questions such as:
 
@@ -33,15 +33,15 @@ This project focuses on questions such as:
 - Which product category generates the most revenue?
 - Which sales channel performs best?
 - Which products are the top revenue contributors?
-- Do returning customers generate higher average revenue per order?
+- Do returning customers generate higher average revenue per order than new customers?
 - Which salespeople contribute the most revenue?
-- How does discount level relate to order revenue?
+- Does discount level appear to be associated with order revenue?
 - How concentrated is revenue among the top products?
-- Which areas may provide opportunities for revenue improvement?
+- What areas may provide opportunities for improving revenue performance?
 
-The objective is to turn order-level sales data into clear business insights.
+The objective is to turn order-level sales data into clear and reproducible business insights.
 
-> The analysis identifies patterns in the dataset. It does not prove that one factor causes another.
+> The analysis identifies patterns in the dataset. It does not prove causation.
 
 ---
 
@@ -71,15 +71,15 @@ The final dataset contains:
 ### Fields Used
 
 ```text
-Order_ID
+Order ID
 Date
 Region
-Sales_Channel
-Customer_Type
-Product_Category
+Sales Channel
+Customer Type
+Product Category
 Product
 Salesperson
 Quantity
-Unit_Price
+Unit Price
 Discount
 Revenue

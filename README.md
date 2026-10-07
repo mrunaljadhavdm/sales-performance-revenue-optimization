@@ -1,80 +1,85 @@
-# Credit Card Payment Behavior & Default Risk Analysis
+# Sales Performance & Revenue Optimization Analysis
 
-A finance-focused **Data Analytics Portfolio Project** analyzing customer credit usage and payment behavior to identify observed patterns associated with credit-card default.
+I built this project to understand how sales performance varies across products, regions, sales channels, customers and salespeople. The analysis starts in Excel for reporting and statistical analysis, then moves to MySQL for deeper business analysis.
 
-> **Data note:** This project uses a prepared 4,220-customer dataset based on the **UCI Machine Learning Repository — Default of Credit Card Clients** dataset. The original UCI dataset contains 30,000 records. The 4,220-customer dataset used here is the prepared dataset for the final Excel, SQL, and Power BI analysis.
-
----
-
-## 📌 Project Objective
-
-The objective is to analyze customer credit usage and payment behavior and identify observed patterns associated with credit-card default.
-
-The analysis focuses on:
-
-- Customer default rates
-- Credit-limit groups
-- Credit-utilization groups
-- Late-payment behavior
-- Payment-status patterns
-- Average bill and payment behavior
-
-This is a **descriptive and diagnostic analysis project**. It does not use machine learning or predictive modeling.
+![Sales Performance Dashboard](assets/Dashboard.png)
 
 ---
 
-## 🛠️ Tools & Technologies
+## 1. Introduction
 
-- **Microsoft Excel**
-- **MySQL**
-- **Power BI**
-- **DAX**
+This project analyzes **2,000 sales orders**, with one row representing one order.
 
-**Python was NOT used in this project.**
+The data contains information about order dates, regions, sales channels, customer types, product categories, products, salespeople, quantity, unit price, discounts and revenue.
 
-### Tool Usage
+The main goal was to identify **revenue patterns, high-performing segments, product concentration and opportunities for improving sales performance**.
 
-**Excel**
-- Data cleaning
-- Data preparation
-- Derived fields
-- Customer segmentation
-- Pivot-table analysis
-- Business-question analysis
-- Data dictionary documentation
+The project follows one complete workflow:
 
-**MySQL**
-- Data validation
-- KPI calculations
-- Aggregation
-- Customer segmentation
-- Default-rate analysis
-- Reproducing business-question results
+**Excel → Statistics → SQL**
 
-**Power BI**
-- Data modeling
-- DAX measures
-- KPI cards
-- Interactive visualizations
-- Slicers
-- Two-page dashboard
-- Business insight presentation
+Excel is used for reporting and visualization, while SQL is used for deeper analysis and business questions that go beyond the dashboard.
 
 ---
 
-## 🔄 Project Workflow
+## 2. Business Problem
+
+A business needs a simple way to understand where revenue is coming from and which areas deserve further attention.
+
+This project focuses on questions such as:
+
+- Which month generates the highest revenue?
+- Which region contributes the most revenue?
+- Which product category generates the most revenue?
+- Which sales channel performs best?
+- Which products are the top revenue contributors?
+- Do returning customers generate higher average revenue per order?
+- Which salespeople contribute the most revenue?
+- How does discount level relate to order revenue?
+- How concentrated is revenue among the top products?
+- Which areas may provide opportunities for revenue improvement?
+
+The objective is to turn order-level sales data into clear business insights.
+
+> The analysis identifies patterns in the dataset. It does not prove that one factor causes another.
+
+---
+
+## 3. Dataset
+
+This project uses a **practice/simulated sales dataset** created for portfolio analysis.
+
+The final dataset contains:
+
+- **2,000 orders**
+- **One row per order**
+- **12 analytical columns**
+- Date range: **January–December 2026**
+
+| Detail | Information |
+|---|---|
+| Project Domain | Sales / Revenue Analytics |
+| Orders | **2,000** |
+| Date Range | **Jan–Dec 2026** |
+| Regions | **5** |
+| Sales Channels | **4** |
+| Customer Types | **2** |
+| Product Categories | **6** |
+| Products | **28** |
+| Salespeople | **15** |
+
+### Fields Used
 
 ```text
-Raw Data
-   ↓
-Excel Cleaning & Transformation
-   ↓
-Pivot Analysis
-   ↓
-MySQL Validation & Analysis
-   ↓
-Power BI Data Model & DAX
-   ↓
-Interactive Dashboard
-   ↓
-Business Insights
+Order_ID
+Date
+Region
+Sales_Channel
+Customer_Type
+Product_Category
+Product
+Salesperson
+Quantity
+Unit_Price
+Discount
+Revenue

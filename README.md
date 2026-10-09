@@ -1,85 +1,141 @@
 # Sales Performance & Revenue Optimization Analysis
 
-I built this project to understand how sales performance varies across products, regions, sales channels, customers and salespeople. The analysis starts in Excel for reporting and statistical analysis, then moves to MySQL for deeper business analysis.
+**Tools:** Microsoft Excel · MySQL 8+ · Statistics  
+**Domain:** Sales and Revenue Analytics  
+**Project type:** Descriptive and diagnostic data analytics  
+**Dataset:** Simulated portfolio dataset
+
+> This project uses practice data created for portfolio analysis. The findings demonstrate an analytics workflow and should not be interpreted as results from a real company.
 
 ![Sales Performance Dashboard](assets/Dashboard.png)
 
----
+## 1. Business Problem
 
-## 1. Introduction
+A business wants to understand where its revenue comes from and which products, regions, channels, customer types, and salespeople deserve further attention. A dashboard alone is not enough: decision-makers also need reliable calculations, evidence-backed findings, and clear next steps.
 
-This project analyzes **2,000 sales orders**, with one row representing one order.
+This project answers questions such as:
 
-The data contains information about order dates, regions, sales channels, customer types, product categories, products, salespeople, quantity, unit price, discounts and revenue.
+- Which months and regions contribute the most revenue?
+- Which product categories and products are the strongest revenue contributors?
+- Which sales channel generates the most revenue?
+- How does average order revenue differ between new and returning customers?
+- How is revenue distributed across orders and products?
+- What patterns appear across discount levels, and what should be investigated further?
 
-The main goal was to identify **observed revenue patterns, high-performing segments, product concentration and areas for further business investigation**.
+## 2. Dataset
 
-The project follows one complete workflow:
+The dataset contains **2,000 orders**, with one row representing one order, covering **January–December 2026**.
 
-**Excel → Statistics → MySQL**
+| Dataset characteristic | Detail |
+|---|---:|
+| Orders | 2,000 |
+| Analytical columns | 12 |
+| Regions | 5 |
+| Sales channels | 4 |
+| Customer types | 2 |
+| Product categories | 6 |
+| Products | 28 |
+| Salespeople | 15 |
 
-Excel is used for reporting, visualization and statistical analysis, while SQL is used for deeper analysis beyond the main dashboard.
+Fields include `Order_ID`, `Date`, `Region`, `Sales_Channel`, `Customer_Type`, `Product_Category`, `Product`, `Salesperson`, `Quantity`, `Unit_Price`, `Discount`, and `Revenue`.
 
----
-
-## 2. Business Problem
-
-A business needs a clear way to understand where revenue is coming from and which areas deserve further attention.
-
-This project focuses on questions such as:
-
-- Which month generates the highest revenue?
-- Which region contributes the most revenue?
-- Which product category generates the most revenue?
-- Which sales channel performs best?
-- Which products are the top revenue contributors?
-- Do returning customers generate higher average revenue per order than new customers?
-- Which salespeople contribute the most revenue?
-- Does discount level appear to be associated with order revenue?
-- How concentrated is revenue among the top products?
-- What areas may provide opportunities for improving revenue performance?
-
-The objective is to turn order-level sales data into clear and reproducible business insights.
-
-> The analysis identifies patterns in the dataset. It does not prove causation.
-
----
-
-## 3. Dataset
-
-This project uses a **practice/simulated sales dataset** created for portfolio analysis.
-
-The final dataset contains:
-
-- **2,000 orders**
-- **One row per order**
-- **12 analytical columns**
-- Date range: **January–December 2026**
-
-| Detail | Information |
-|---|---|
-| Project Domain | Sales / Revenue Analytics |
-| Orders | **2,000** |
-| Date Range | **Jan–Dec 2026** |
-| Regions | **5** |
-| Sales Channels | **4** |
-| Customer Types | **2** |
-| Product Categories | **6** |
-| Products | **28** |
-| Salespeople | **15** |
-
-### Fields Used
+Revenue is calculated as:
 
 ```text
-Order ID
-Date
-Region
-Sales Channel
-Customer Type
-Product Category
-Product
-Salesperson
-Quantity
-Unit Price
-Discount
-Revenue
+Revenue = Quantity × Unit Price × (1 − Discount)
+```
+
+The project validates this derived measure before interpreting the sales results.
+
+## 3. Tools and Methodology
+
+### Excel
+
+- Organized the order-level data in an Excel Table.
+- Built PivotTables and supporting calculations for business questions.
+- Created an interactive dashboard with KPI cards, charts, and slicers.
+- Used descriptive statistics and IQR-based outlier analysis.
+
+### MySQL
+
+- Checked row counts, unique order IDs, missing values, valid categories, and revenue calculations.
+- Answered business questions using aggregations, subqueries, CTEs, `CASE WHEN`, ranking, and window functions.
+- Used `RANK()` to compare products, `LAG()` for month-over-month analysis, and `NTILE()` to examine order-value segments.
+- Reconciled the SQL KPI summary with the project reporting figures.
+
+### Statistics
+
+- Mean, median, standard deviation, quartiles, and interquartile range (IQR).
+- Correlation and revenue-distribution analysis.
+- Outlier identification to find high-revenue orders that deserve closer review.
+
+## 4. Key Results
+
+The findings below describe this practice dataset; they are not real-company outcomes.
+
+| KPI / finding | Result |
+|---|---:|
+| Total revenue | **$2,452,084.30** |
+| Orders analyzed | **2,000** |
+| Quantity sold | **5,552** |
+| Average revenue per order | **$1,226.04** |
+| Highest-revenue month | **November — approximately $274.37K** |
+| Highest-revenue region | **North — approximately $561.75K** |
+| Highest-revenue channel | **Online — approximately $791.54K** |
+| Highest-revenue category | **Computers — approximately $1.35M** |
+| Revenue share of the top five products | **Approximately 57.7%** |
+| High-revenue outliers by the IQR rule | **124 orders (6.20%)** |
+
+### Three Key Findings
+
+1. **Revenue is concentrated among a small group of products.** The top five products contribute approximately **57.7%** of total revenue. This concentration makes the leading products important to monitor and gives management a reason to review availability and performance for those products.
+2. **Revenue differs across channels and regions.** Online is the leading channel at approximately **$791.54K**, while North is the leading region at approximately **$561.75K**. A useful follow-up is to compare product mix, order size, and customer type within these segments.
+3. **A small portion of orders have unusually high revenue.** The IQR method flags **124 orders (6.20%)** as high-revenue outliers. These orders may reflect legitimate high-value purchases or data patterns that deserve review; an outlier is not automatically an error.
+
+## 5. Dashboard
+
+The `Sales_Dashboard` worksheet presents:
+
+- Total Revenue, Total Orders, Quantity Sold, and Average Order Value.
+- Revenue by month, region, sales channel, and product category.
+- Top five products by revenue.
+- Slicers for product category, sales channel, region, and customer type.
+
+The other workbook sheets support reproducibility:
+
+- `Sales_Data` — order-level records.
+- `Supporting_pivots` — supporting PivotTables.
+- `Business_Questions` — questions, answers, and analysis sources.
+- `Statistical_Analysis` — descriptive statistics, correlations, and IQR analysis.
+
+## 6. Business Recommendations
+
+- Monitor the leading products because they represent a substantial share of revenue.
+- Compare Online with other channels using product mix, average order revenue, and customer type before deciding where to invest further.
+- Investigate the North region's performance by category and product to understand which combinations contribute most.
+- Review high-revenue outliers individually before treating them as errors or unusual customer behavior.
+- Treat discount comparisons as descriptive: the dataset does not prove that a discount caused an increase or decrease in revenue.
+
+## 7. Validation and Limitations
+
+- The project includes row-count, duplicate-order, missing-value, category, and revenue-formula checks.
+- Revenue is derived from quantity, unit price, and discount; correlations involving revenue need careful interpretation.
+- The dataset is simulated/practice data and is not a messy production ETL dataset.
+- No cost field is included, so profit or margin cannot be calculated.
+- This is descriptive and diagnostic analysis, not forecasting or predictive modeling.
+- Correlation and group differences do not establish causation.
+
+## 8. Reproducibility
+
+Repository contents are organized into data, Excel, SQL, and assets folders.
+
+1. Open the Excel workbook in `excel/` and explore the dashboard using its slicers.
+2. Import the SQL-ready CSV from `data/` into MySQL 8+ using the column definitions in the SQL script.
+3. Run the SQL checks and analysis sections to reproduce the business-question results.
+4. Compare SQL outputs with the Excel PivotTables and KPI summary.
+
+> Use the filenames and paths as they appear in the repository. If importing on another computer, select the local CSV path in your MySQL import workflow.
+
+## 9. Interview Summary
+
+> I built a Sales Performance & Revenue Optimization Analysis project using Excel, MySQL, and statistics. I analyzed 2,000 simulated sales orders to compare revenue across products, categories, regions, channels, customer types, and salespeople. I created an interactive Excel dashboard, used SQL for validation and deeper analysis with CTEs and window functions, and applied descriptive statistics and IQR analysis. A key finding was that the top five products contributed approximately 57.7% of revenue. I presented this as a product-concentration insight and recommended further review of leading products and segment performance rather than making unsupported causal claims.

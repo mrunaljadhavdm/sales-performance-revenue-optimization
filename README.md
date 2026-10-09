@@ -125,17 +125,8 @@ The other workbook sheets support reproducibility:
 - This is descriptive and diagnostic analysis, not forecasting or predictive modeling.
 - Correlation and group differences do not establish causation.
 
-## 8. Reproducibility
+.
 
-Repository contents are organized into data, Excel, SQL, and assets folders.
 
-1. Open the Excel workbook in `excel/` and explore the dashboard using its slicers.
-2. Import the SQL-ready CSV from `data/` into MySQL 8+ using the column definitions in the SQL script.
-3. Run the SQL checks and analysis sections to reproduce the business-question results.
-4. Compare SQL outputs with the Excel PivotTables and KPI summary.
 
-> Use the filenames and paths as they appear in the repository. If importing on another computer, select the local CSV path in your MySQL import workflow.
 
-## 9. Interview Summary
-
-> I built a Sales Performance & Revenue Optimization Analysis project using Excel, MySQL, and statistics. I analyzed 2,000 simulated sales orders to compare revenue across products, categories, regions, channels, customer types, and salespeople. I created an interactive Excel dashboard, used SQL for validation and deeper analysis with CTEs and window functions, and applied descriptive statistics and IQR analysis. A key finding was that the top five products contributed approximately 57.7% of revenue. I presented this as a product-concentration insight and recommended further review of leading products and segment performance rather than making unsupported causal claims.
